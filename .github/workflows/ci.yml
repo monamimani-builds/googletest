@@ -12,7 +12,9 @@ jobs:
     strategy:
       matrix:
         BuidType: [Debug, RelWithDebInfo]
-        ArtifactName: GoogleTest${{ matrix.BuidType }}.tar.bz2
+
+    env:
+      ArtifactName: GoogleTest${{ matrix.BuidType }}
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
