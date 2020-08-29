@@ -109,14 +109,14 @@ jobs:
           cp -R GoogleTestRelWithDebInfo/bin ./Release/bin/RelWithDebInfo
           cp -R GoogleTestDebug/bin ./Release/bin/Debug
 
-#      - name: Upload to Release
-#        id: upload_to_release
-#        uses: actions/upload-release-asset@v1.0.1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          upload_url: ${{ steps.CreateRelease.outputs.upload_url }}
-#          asset_path: ./${{ matrix.config.artifact }}
-#          asset_name: ${{ matrix.config.artifact }}
-#          asset_content_type: application/x-gtar
+      - name: Upload to Release
+        id: upload_to_release
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.CreateRelease.outputs.upload_url }}
+          asset_path: ./Release
+          asset_name: GoogleTest${{ github.ref }}.zip
+          asset_content_type: application/zip
 
