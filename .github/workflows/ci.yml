@@ -49,7 +49,7 @@ jobs:
           cmake -S googletest -Wno-dev -B ${{ github.workspace }}\_build -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}\_install -DCMAKE_BUILD_TYPE=${{ matrix.BuidType }} -DCMAKE_CXX_COMPILER="cl.exe" -DCMAKE_C_COMPILER="cl.exe" -DMSVC_TOOLSET_VERSION=142 -D BUILD_GMOCK=TRUE -DBUILD_SHARED_LIBS=TRUE -DINSTALL_GTEST=TRUE -G Ninja         
           cmake --build ./_build --target install --config ${{ matrix.BuidType }}
           
-          Get-ChildItem -Recurse -Depth 2
+          Get-ChildItem -Recurse -Depth 1
 
       - name: Upload
         uses: actions/upload-artifact@v1
@@ -78,7 +78,7 @@ jobs:
         run: |
           echo "${{ steps.CreateRelease.outputs.upload_url }}" > ./upload_url
           
-          find ${{ github.workspace }} -maxdepth 2 -type d -ls
+          find "${{ github.workspace }}" -maxdepth 2 -type d -ls
           
       - uses: actions/upload-artifact@v1
         with:
