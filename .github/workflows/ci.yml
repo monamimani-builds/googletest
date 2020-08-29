@@ -46,4 +46,5 @@ jobs:
       
       - name: Cmake build/install
         run: |
+          ls
           cmake --build ./_build --target install --config ${{ matrix.BuidType }}
