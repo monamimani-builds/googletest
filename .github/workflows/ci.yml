@@ -46,8 +46,10 @@ jobs:
       
       - name: Cmake build/install
         run: |
-          cmake --build ./_build --target install --config ${{ matrix.BuidType }}
           ls
           ls ${{ github.workspace }}\
           ls ${{ github.workspace }}\_build
+          
+          cmake --build ./_build --target install --config ${{ matrix.BuidType }}
+
           ls ${{ github.workspace }}\_install
