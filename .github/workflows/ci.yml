@@ -46,4 +46,5 @@ jobs:
       
       - name: Cmake build/install
         run: |
+          ls ./_build
           Start-Process cmake -ArgumentList "--build ./_build --target install --config ${{ matrix.BuidType }}" -NoNewWindow
