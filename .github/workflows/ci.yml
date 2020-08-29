@@ -21,6 +21,7 @@ jobs:
 
       - name: Cmake generate
         run: |
+        
           $vswherePath="${Env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
 
           $installDir = & $vswherePath -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
