@@ -23,8 +23,8 @@ jobs:
         run: |
           
           $vswherePath="%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
-
-          $installDir = $vswherePath -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
+          Write-Output $vswherePath
+          $installDir = "$vswherePath" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
           $vcvarallPath = join-path $installDir 'VC\Auxiliary\Build\vcvarsall.bat'
           
           if(not test-path $vcvarallPath) (
