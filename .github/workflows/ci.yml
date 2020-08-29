@@ -49,7 +49,6 @@ jobs:
           cmake -S googletest -Wno-dev -B ${{ github.workspace }}\_build -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}\_install -DCMAKE_BUILD_TYPE=${{ matrix.BuidType }} -DCMAKE_CXX_COMPILER="cl.exe" -DCMAKE_C_COMPILER="cl.exe" -DMSVC_TOOLSET_VERSION=142 -D BUILD_GMOCK=TRUE -DBUILD_SHARED_LIBS=TRUE -DINSTALL_GTEST=TRUE -G Ninja         
           cmake --build ./_build --target install --config ${{ matrix.BuidType }}
           
-          echo $(date +'%Y-%m-%dT%H:%M:%S')}
           Get-ChildItem -Recurse -Depth 1
           
 
