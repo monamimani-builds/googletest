@@ -108,6 +108,8 @@ jobs:
           
           cp -R GoogleTestRelWithDebInfo/bin ./Release/bin/RelWithDebInfo
           cp -R GoogleTestDebug/bin ./Release/bin/Debug
+          
+          zip -r GoogleTest.zip ./Release
 
       - name: Upload to Release
         id: upload_to_release
@@ -116,7 +118,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.CreateRelease.outputs.upload_url }}
-          asset_path: ./Release
+          asset_path: ./GoogleTest.zip
           asset_name: GoogleTest.zip
           asset_content_type: application/zip
 
