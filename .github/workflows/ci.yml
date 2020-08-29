@@ -91,7 +91,15 @@ jobs:
         run: |
           find "${{ github.workspace }}" -maxdepth 2 -type d -ls
           
-          #mkdir ./Release
+          mkdir ./Release
+          mkdir ./Release/inlude
+          mkdir ./Release/lib
+          mkdir ./Release/lib/Debug
+          mkdir ./Release/lib/RelWithDebInfo
+          mkdir ./Release/bin
+          mkdir ./Release/bin/Debug
+          mkdir ./Release/bin/RelWithDebInfo
+          
           
           cp -R GoogleTestRelWithDebInfo/include ./Release/include
           
