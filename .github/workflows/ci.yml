@@ -21,19 +21,27 @@ jobs:
 
       - name: Cmake generate
         run: |
-          SET VSWHERE_PATH="%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vswherePath="${Env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
 
-          for /f "usebackq tokens=*" %%i in (`%VSWHERE_PATH% -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do (
-            set InstallDir=%%i
-          )
+          $installDir = & $vswherePath -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
 
-          if not exist "%InstallDir%\Common7\Tools\vsdevcmd.bat" (
+          $vcvarallPath = join-path $installDir 'VC\Auxiliary\Build\vcvarsall.bat'
+
+          if(!(test-path $vcvarallPath)) {
             exit /b 2
-          )
+          }
 
-          //call "$(VcvarsallPath)\VC\Auxiliary\Build\vcvarsall.bat" x64
-          call "%InstallDir%\VC\Auxiliary\Build\vcvarsall.bat" x64
-          cmake.exe -S googletest -Wno-dev -B _build -D CMAKE_INSTALL_PREFIX=_install -D CMAKE_BUILD_TYPE=Debug;RelWithDebInfo -D CMAKE_CXX_COMPILER="cl.exe" -D CMAKE_C_COMPILER="cl.exe" -D MSVC_TOOLSET_VERSION=142 -D BUILD_GMOCK=TRUE -D BUILD_SHARED_LIBS=TRUE -D INSTALL_GTEST=TRUE -G "Ninja"
+          cmd.exe /c " `"$vcvarallPath`" x64 && set" | foreach {
+            # if the line is a session variable
+            if( $_ -match "=" )
+            {
+              $pair = $_.split("=");
+              # Set the environment variable for the current PowerShell session
+              Set-Item -Force -Path "ENV:\$($pair[0])" -Value "$($pair[1])"
+            }
+          }
+
+          Start-Process cmake -ArgumentList "-S googletest -Wno-dev -B _build -DCMAKE_INSTALL_PREFIX=_install -DCMAKE_BUILD_TYPE=Debug;RelWithDebInfo -DCMAKE_CXX_COMPILER=""cl.exe"" -DCMAKE_C_COMPILER=""cl.exe"" -DMSVC_TOOLSET_VERSION=142 -D BUILD_GMOCK=TRUE -DBUILD_SHARED_LIBS=TRUE -DINSTALL_GTEST=TRUE -G ""Ninja""" -NoNewWindow
       
       - name: Cmake build/install
         run: |
