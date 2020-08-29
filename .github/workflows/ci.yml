@@ -89,7 +89,7 @@ jobs:
           
       - name: Assemble Release
         run: |
-          find "${{ github.workspace }}" -maxdepth 3 -type d -l
+          find "${{ github.workspace }}" -maxdepth 2 -type d -ls
           
           #mkdir ./Release
           
