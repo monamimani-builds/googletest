@@ -117,6 +117,6 @@ jobs:
         with:
           upload_url: ${{ steps.CreateRelease.outputs.upload_url }}
           asset_path: ./Release
-          asset_name: GoogleTest${{ github.ref }}.zip
+          asset_name: GoogleTest.zip
           asset_content_type: application/zip
 
