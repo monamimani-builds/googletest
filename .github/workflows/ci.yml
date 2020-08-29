@@ -50,15 +50,9 @@ jobs:
           
           cmake --build ./_build --target install --config ${{ matrix.BuidType }}
           ls ${{ github.workspace }}\_install
-          
-        
-          
-      - name: Pack
-        working-directory: ${{ github.workspace }}\_install
-        run: cmake -E tar cJfv ${{ matrix.ArtifactName }} ${{ github.workspace }}\_install
 
       - name: Upload
         uses: actions/upload-artifact@v1
         with:
-          path: ${{ matrix.ArtifactName }}
+          path: ${{ github.workspace }}\_install
           name: ${{ matrix.ArtifactName }}
