@@ -94,16 +94,24 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v1
         with:
-          name: ${ { matrix.config.artifact } }
-          path: ./
+          name: GoogleTestDebug
+          path: ./GoogleTestDebug
+          
+      - name: Download artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: GoogleTestRelWithDebInfo
+          path: ./GoogleTestRelWithDebInfo
 
       - name: Download URL
         uses: actions/download-artifact@v1
         with:
           name: upload_url
           path: ./
+        
       - id: set_upload_url
         run: |
+          find "${{ github.workspace }}" -maxdepth 2 -type d -ls
           upload_url=`cat ./upload_url`
           echo ::set-output name=upload_url::$upload_url
 
