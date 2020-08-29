@@ -42,7 +42,7 @@ jobs:
             }
           }
 
-          Start-Process cmake -ArgumentList "-S googletest -Wno-dev -B $GITHUB_WORKSPACE/_build -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/_install -DCMAKE_BUILD_TYPE=Debug;RelWithDebInfo -DCMAKE_CXX_COMPILER=""cl.exe"" -DCMAKE_C_COMPILER=""cl.exe"" -DMSVC_TOOLSET_VERSION=142 -D BUILD_GMOCK=TRUE -DBUILD_SHARED_LIBS=TRUE -DINSTALL_GTEST=TRUE -G ""Ninja""" -NoNewWindow
+          cmake -S googletest -Wno-dev -B _build -DCMAKE_INSTALL_PREFIX=_install -DCMAKE_BUILD_TYPE="Debug;RelWithDebInfo" -DCMAKE_CXX_COMPILER="cl.exe" -DCMAKE_C_COMPILER="cl.exe" -DMSVC_TOOLSET_VERSION=142 -D BUILD_GMOCK=TRUE -DBUILD_SHARED_LIBS=TRUE -DINSTALL_GTEST=TRUE -G Ninja
           
           ls
           ls $GITHUB_WORKSPACE/_build
@@ -54,4 +54,4 @@ jobs:
           ls $GITHUB_WORKSPACE
           ls $GITHUB_WORKSPACE/_build
           ls $GITHUB_WORKSPACE/_install
-          Start-Process cmake -ArgumentList "--build ./_build --target install --config ${{ matrix.BuidType }}" -NoNewWindow
+          cmake --build ./_build --target install --config ${{ matrix.BuidType }}
