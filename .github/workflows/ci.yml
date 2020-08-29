@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         BuidType: [Debug, RelWithDebInfo]
+        ArtifactName: GoogleTest${{ matrix.BuidType }}.tar.bz2
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -49,3 +50,15 @@ jobs:
           
           cmake --build ./_build --target install --config ${{ matrix.BuidType }}
           ls ${{ github.workspace }}\_install
+          
+        
+          
+      - name: Pack
+        working-directory: ${{ github.workspace }}\_install
+        run: cmake -E tar cJfv ${{ matrix.ArtifactName }} ${{ github.workspace }}\_install
+
+      - name: Upload
+        uses: actions/upload-artifact@v1
+        with:
+          path: ${{ matrix.ArtifactName }}
+          name: ${{ matrix.ArtifactName }}
