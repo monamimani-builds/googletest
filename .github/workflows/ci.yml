@@ -70,9 +70,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           #tag_name: ${{ github.ref }}
-          tag_name: ${{ github.sha_short }}
+          tag_name: ${{ github.job }}
           #release_name: Release ${{ github.ref }}
-          release_name: Release ${{ github.sha_short }}
+          release_name: Release ${{ github.job }}
           draft: false
           prerelease: false
 
