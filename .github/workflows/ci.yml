@@ -92,13 +92,13 @@ jobs:
           find "${{ github.workspace }}" -maxdepth 2 -type d -ls
           
           mkdir ./Release
-          mkdir ./Release/inlude
-          mkdir ./Release/lib
-          mkdir ./Release/lib/Debug
-          mkdir ./Release/lib/RelWithDebInfo
-          mkdir ./Release/bin
-          mkdir ./Release/bin/Debug
-          mkdir ./Release/bin/RelWithDebInfo
+          #mkdir ./Release/include
+          #mkdir ./Release/lib
+          #mkdir ./Release/lib/Debug
+          #mkdir ./Release/lib/RelWithDebInfo
+          #mkdir ./Release/bin
+          #mkdir ./Release/bin/Debug
+          #mkdir ./Release/bin/RelWithDebInfo
           
           
           cp -R GoogleTestRelWithDebInfo/include ./Release/include
@@ -106,10 +106,10 @@ jobs:
           cp -R GoogleTestRelWithDebInfo/lib ./Release/lib/RelWithDebInfo
           cp -R GoogleTestDebug/lib ./Release/lib/Debug
           
-          cp -R GoogleTestRelWithDebInfo/bin ./Release/bin/RelWithDebInfo
-          cp -R GoogleTestDebug/bin ./Release/bin/Debug
+          cp -R GoogleTestRelWithDebInfo/bin/ ./Release/bin/RelWithDebInfo
+          cp -R GoogleTestDebug/bin/ ./Release/bin/Debug
           
-          zip -r GoogleTest.zip ./Release
+          zip -r --junk-paths GoogleTest.zip ./Release
 
       - name: Upload to Release
         id: upload_to_release
