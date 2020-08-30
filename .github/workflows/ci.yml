@@ -110,7 +110,7 @@ jobs:
           cp -R GoogleTestDebug/bin/ ./Release/bin/Debug
           
           pushd ./Release
-          zip -r GoogleTest.zip .
+          zip -r ${{ github.workspace }}/GoogleTest.zip .
           popd
 
       - name: Upload to Release
