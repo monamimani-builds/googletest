@@ -109,7 +109,9 @@ jobs:
           cp -R GoogleTestRelWithDebInfo/bin/ ./Release/bin/RelWithDebInfo
           cp -R GoogleTestDebug/bin/ ./Release/bin/Debug
           
-          zip -r --junk-paths GoogleTest.zip ./Release
+          pushd ./Release
+          zip -r --junk-paths GoogleTest.zip .
+          popd
 
       - name: Upload to Release
         id: upload_to_release
