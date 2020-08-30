@@ -96,7 +96,7 @@ jobs:
           mkdir ./Release/lib
           #mkdir ./Release/lib/Debug
           #mkdir ./Release/lib/RelWithDebInfo
-          #mkdir ./Release/bin
+          mkdir ./Release/bin
           #mkdir ./Release/bin/Debug
           #mkdir ./Release/bin/RelWithDebInfo
           
