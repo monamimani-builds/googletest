@@ -110,7 +110,7 @@ jobs:
           cp -R GoogleTestDebug/bin/ ./Release/bin/Debug
           
           pushd ./Release
-          zip -r --junk-paths GoogleTest.zip .
+          zip -r GoogleTest.zip .
           popd
 
       - name: Upload to Release
