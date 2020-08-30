@@ -93,7 +93,7 @@ jobs:
           
           mkdir ./Release
           #mkdir ./Release/include
-          #mkdir ./Release/lib
+          mkdir ./Release/lib
           #mkdir ./Release/lib/Debug
           #mkdir ./Release/lib/RelWithDebInfo
           #mkdir ./Release/bin
